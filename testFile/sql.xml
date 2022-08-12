@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<page>
+    <database name="GSWMS_TEST">
+        <table name="WMS.Orgnization">
+            <sql id="ownerId">
+                SELECT Id,XName FROM  WMS.Orgnization order by newid() <!--获取货主id -->
+            </sql>
+            <sql id="supplierId">
+                SELECT Id FROM  WMS.Orgnization order by newid() <!--获取供应商id -->
+            </sql>
+        </table>
+        <table name="WMS.BillType">
+            <sql id="billTypeId">
+                SELECT Id FROM WMS.BillType WHERE XType='RECEIVE' order by newid() <!--获取入库单据类型 -->
+            </sql>
+            <sql id="SHIP_billTypeId">
+                SELECT Id FROM WMS.BillType WHERE XType='SHIP' order by newid() <!--获取出库单据类型 -->
+            </sql>
+        </table>
+         <table name="WMS.Dock">
+            <sql id="dockId">
+                SELECT Id FROM WMS.Dock WHERE XStatus='ENABLED' AND IsShip ='Y'ORDER BY newid() <!--获取月台id -->
+            </sql>
+        </table>
+        <table name="WMS.ReceiptOrder">
+            <sql id="receiptOrderId">
+                SELECT Id, CreationTime, CreatorId, Creator, LastModificationTime, LastModifierId, LastModifier, WhId,
+                BillTypeId, XCode, OwnerId, SupplierId, XStatus, ShelvesStatus, ExpectedPkgQuantity, ReceivedPkgQuantity,
+                MovedPkgQuantity, TolocationId, OperateStatus, ErpStatus, IsOffLine, TrusteeBy, QCBy, Storekeeper,
+                TradingCompany, RelationCode, Comments, Str1,Str2, Str3, Str4, Str5, Str6, Str7, Str8, Str9, Str10,
+                ContactAddress,ContactCity, ContactCountry, ContactEmail, ContactFax, ContactMobile, ContactPostcode,
+                ContactProvince, ContactTelephone, EndReceivedDate, EstimateDate, FromName, OrderDate, RelatedBill1,
+                RelatedBill2, RelatedBill3, StartReceivedDate, ContactName FROM WMS.ReceiptOrder a WHERE XStatus ='OPEN'
+                AND EXISTS(SELECT ReceiptOrderId FROM WMS.ReceiptOrderItem b WHERE a.Id=b.ReceiptOrderId)
+                ORDER BY a.LastModificationTime DESC <!--编辑、生效收货单时，获取符合条件的收货单（有收货明细） -->
+            </sql>
+            <sql id="receiptOrderId2">
+                SELECT Id, CreationTime, CreatorId, Creator, LastModificationTime, LastModifierId, LastModifier, WhId,
+                BillTypeId, XCode, OwnerId, SupplierId, XStatus, ShelvesStatus, ExpectedPkgQuantity, ReceivedPkgQuantity,
+                MovedPkgQuantity, TolocationId, OperateStatus, ErpStatus, IsOffLine, TrusteeBy, QCBy, Storekeeper,
+                TradingCompany, RelationCode, Comments, Str1,Str2, Str3, Str4, Str5, Str6, Str7, Str8, Str9, Str10,
+                ContactAddress,ContactCity, ContactCountry, ContactEmail, ContactFax, ContactMobile, ContactPostcode,
+                ContactProvince, ContactTelephone, EndReceivedDate, EstimateDate, FromName, OrderDate, RelatedBill1,
+                RelatedBill2, RelatedBill3, StartReceivedDate, ContactName FROM WMS.ReceiptOrder a WHERE XStatus ='OPEN'
+                AND not EXISTS(SELECT ReceiptOrderId FROM WMS.ReceiptOrderItem b WHERE a.Id=b.ReceiptOrderId)
+                ORDER BY a.LastModificationTime DESC <!--编辑收货单时，获取符合条件的收货单（没有收货明细） -->
+            </sql>
+            <sql id="receiptOrderItem">
+                SELECT s.Id receiptOrderId,s.LastModifierId receipt_ModifierId,s.CreatorId receipt_CreatorId,
+                s.CreationTime receipt_CreationTime,s.LastModificationTime receipt_ModificationTime,
+                s.OwnerId,s.BillTypeId,s.XCode receipt_XCode,s.SupplierId,
+                a.id materialId,a.IsForbidden,a.ForbiddenUserId,a.XCode,a.XName,a.spec,a.SmallestUnit,
+                a.MaterialCategoryId,a.MaterialPropertyRuleId,a.AllocatRelationId,a.ShipmentRuleId,
+                a.CreatorId,a.LastModifierId,a.CreationTime,a.LastModificationTime,
+                b.id packageUnitId,b.CreationTime Unit_CreationTime,b.CreatorId Unit_CreatorId,
+                b.LastModificationTime Unit_ModificationTime,b.LastModifierId Unit_ModifierId,b.Creator Unit_Creator,
+                b.Unit Unit_Unit,b.ConvertFigureSmallUnit Unit_SmallUnit,b.ConvertFigure Unit_ConvertFigure,b.PkgLevel Unit_PkgLevel,
+                c.XCode Category_XCode,c.XName Category_XName,c.MaterialPropertyRuleId Category_PropertyRuleId,
+                c.IsForbidden Category_IsForbidden,c.LastModificationTime Category_ModificationTime,
+                c.CreatorId Category_CreatorId,c.CreationTime Category_CreationTime,
+                d.CreationTime PropertyRule_CreationTime,d.CreatorId PropertyRule_CreatorId,d.Creator PropertyRule_Creator,
+                d.LastModificationTime PropertyRule_ModificationTime,d.LastModifierId PropertyRule_ModifierId,d.LastModifier PropertyRule_Modifier,
+                d.XCode PropertyRule_XCode,d.XName PropertyRule_XName,d.ProductionTime PropertyRule_ProductionTime,d.ReceivedTime PropertyRule_ReceivedTime,
+                d.InboundTime PropertyRule_InboundTime,d.ExpiredTime PropertyRule_ExpiredTime,d.AStartTime PropertyRule_AStartTime,
+                d.QCStartTime PropertyRule_QCStartTime,d.PreservationDays PropertyRule_PreservationDays,d.SourceOrderCode PropertyRule_SourceOrderCode,
+                d.BatchNo PropertyRule_BatchNo, d.BatchNo PropertyRule_SupplierId,d.M_Str1 PropertyRule_M_Str1,d.M_Str2 PropertyRule_M_Str2,
+                d.M_Str3 PropertyRule_M_Str3, d.M_Str4 PropertyRule_M_Str4,d.M_Str5 PropertyRule_M_Str5,d.M_Str6 PropertyRule_M_Str6,
+                d.M_Str7 PropertyRule_M_Str7, d.M_Str8 PropertyRule_M_Str8,d.M_Str9 PropertyRule_M_Str9,d.M_Str10 PropertyRule_M_Str10,
+                d.M_Str11 PropertyRule_M_Str11, d.M_Str12 PropertyRule_M_Str12,d.M_Str13 PropertyRule_M_Str13,d.M_Str14 PropertyRule_M_Str14,
+                d.M_Str15 PropertyRule_M_Str15, d.M_Str16 PropertyRule_M_Str16,d.M_Str17 PropertyRule_M_Str17,d.M_Str18 PropertyRule_M_Str18,
+                d.M_Str19 PropertyRule_M_Str19, d.M_Str20 PropertyRule_M_Str20,d.M_Str21 PropertyRule_M_Str21,d.M_Str22 PropertyRule_M_Str22,
+                d.M_Str23 PropertyRule_M_Str23, d.M_Str24 PropertyRule_M_Str24,d.M_Str25 PropertyRule_M_Str25,d.M_Str26 PropertyRule_M_Str26,
+                d.M_Str27 PropertyRule_M_Str27, d.M_Str28 PropertyRule_M_Str28,d.M_Str29 PropertyRule_M_Str29,d.M_Str30 PropertyRule_M_Str30,
+                d.M_Str31 PropertyRule_M_Str31, d.M_Str32 PropertyRule_M_Str32,d.M_Str33 PropertyRule_M_Str33,d.M_Str34 PropertyRule_M_Str34,
+                d.M_Str35 PropertyRule_M_Str35, d.M_Str36 PropertyRule_M_Str36,d.M_Str37 PropertyRule_M_Str37,d.M_Str38 PropertyRule_M_Str38,
+                d.M_Str39 PropertyRule_M_Str39, d.M_Str40 PropertyRule_M_Str40
+                FROM (SELECT TOP 1 * FROM WMS.ReceiptOrder x WHERE XStatus ='OPEN'
+                --AND NOT EXISTS(SELECT 1 FROM WMS.ReceiptOrderItem y WHERE x.Id=y.ReceiptOrderId)
+                ORDER BY CreationTime DESC) s
+                FULL OUTER JOIN (SELECT TOP 10 * FROM  WMS.Material WHERE IsForbidden='N' AND XCode!='0000' ORDER BY newid()) a ON 1=1
+                INNER JOIN WMS.PackageUnit b ON a.Id=b.MaterialId
+                INNER JOIN WMS.MaterialCategory c ON a.MaterialCategoryId=c.Id
+                INNER JOIN WMS.materialPropertyRule d ON a.MaterialPropertyRuleId=d.Id; <!--获取收货单&物料信息 -->
+            </sql>
+            <sql id="receiptOrderItem2">
+                SELECT s.Id receiptOrderId,s.LastModifierId receipt_ModifierId,s.CreatorId receipt_CreatorId,
+                s.CreationTime receipt_CreationTime,s.LastModificationTime receipt_ModificationTime,
+                s.OwnerId,s.BillTypeId,s.XCode receipt_XCode,s.SupplierId,
+                a.id materialId,a.IsForbidden,a.ForbiddenUserId,a.XCode,a.XName,a.spec,a.SmallestUnit,
+                a.MaterialCategoryId,a.MaterialPropertyRuleId,a.AllocatRelationId,a.ShipmentRuleId,
+                a.CreatorId,a.LastModifierId,a.CreationTime,a.LastModificationTime,
+                b.id packageUnitId,b.CreationTime Unit_CreationTime,b.CreatorId Unit_CreatorId,
+                b.LastModificationTime Unit_ModificationTime,b.LastModifierId Unit_ModifierId,b.Creator Unit_Creator,
+                b.Unit Unit_Unit,b.ConvertFigureSmallUnit Unit_SmallUnit,b.ConvertFigure Unit_ConvertFigure,b.PkgLevel Unit_PkgLevel,
+                c.XCode Category_XCode,c.XName Category_XName,c.MaterialPropertyRuleId Category_PropertyRuleId,
+                c.IsForbidden Category_IsForbidden,c.LastModificationTime Category_ModificationTime,
+                c.CreatorId Category_CreatorId,c.CreationTime Category_CreationTime,
+                d.CreationTime PropertyRule_CreationTime,d.CreatorId PropertyRule_CreatorId,d.Creator PropertyRule_Creator,
+                d.LastModificationTime PropertyRule_ModificationTime,d.LastModifierId PropertyRule_ModifierId,d.LastModifier PropertyRule_Modifier,
+                d.XCode PropertyRule_XCode,d.XName PropertyRule_XName,d.ProductionTime PropertyRule_ProductionTime,d.ReceivedTime PropertyRule_ReceivedTime,
+                d.InboundTime PropertyRule_InboundTime,d.ExpiredTime PropertyRule_ExpiredTime,d.AStartTime PropertyRule_AStartTime,
+                d.QCStartTime PropertyRule_QCStartTime,d.PreservationDays PropertyRule_PreservationDays,d.SourceOrderCode PropertyRule_SourceOrderCode,
+                d.BatchNo PropertyRule_BatchNo, d.BatchNo PropertyRule_SupplierId,d.M_Str1 PropertyRule_M_Str1,d.M_Str2 PropertyRule_M_Str2,
+                d.M_Str3 PropertyRule_M_Str3, d.M_Str4 PropertyRule_M_Str4,d.M_Str5 PropertyRule_M_Str5,d.M_Str6 PropertyRule_M_Str6,
+                d.M_Str7 PropertyRule_M_Str7, d.M_Str8 PropertyRule_M_Str8,d.M_Str9 PropertyRule_M_Str9,d.M_Str10 PropertyRule_M_Str10,
+                d.M_Str11 PropertyRule_M_Str11, d.M_Str12 PropertyRule_M_Str12,d.M_Str13 PropertyRule_M_Str13,d.M_Str14 PropertyRule_M_Str14,
+                d.M_Str15 PropertyRule_M_Str15, d.M_Str16 PropertyRule_M_Str16,d.M_Str17 PropertyRule_M_Str17,d.M_Str18 PropertyRule_M_Str18,
+                d.M_Str19 PropertyRule_M_Str19, d.M_Str20 PropertyRule_M_Str20,d.M_Str21 PropertyRule_M_Str21,d.M_Str22 PropertyRule_M_Str22,
+                d.M_Str23 PropertyRule_M_Str23, d.M_Str24 PropertyRule_M_Str24,d.M_Str25 PropertyRule_M_Str25,d.M_Str26 PropertyRule_M_Str26,
+                d.M_Str27 PropertyRule_M_Str27, d.M_Str28 PropertyRule_M_Str28,d.M_Str29 PropertyRule_M_Str29,d.M_Str30 PropertyRule_M_Str30,
+                d.M_Str31 PropertyRule_M_Str31, d.M_Str32 PropertyRule_M_Str32,d.M_Str33 PropertyRule_M_Str33,d.M_Str34 PropertyRule_M_Str34,
+                d.M_Str35 PropertyRule_M_Str35, d.M_Str36 PropertyRule_M_Str36,d.M_Str37 PropertyRule_M_Str37,d.M_Str38 PropertyRule_M_Str38,
+                d.M_Str39 PropertyRule_M_Str39, d.M_Str40 PropertyRule_M_Str40
+                FROM (SELECT TOP 1 * FROM (SELECT TOP 2 * FROM WMS.ReceiptOrder x WHERE XStatus ='OPEN'
+                AND NOT EXISTS(SELECT 1 FROM WMS.ReceiptOrderItem y WHERE x.Id=y.ReceiptOrderId)
+                ORDER BY CreationTime DESC)p ORDER BY CreationTime) s
+                FULL OUTER JOIN (SELECT TOP 1 * FROM  WMS.Material WHERE IsForbidden='N' AND XCode!='0000' ORDER BY newid()) a ON 1=1
+                INNER JOIN WMS.PackageUnit b ON a.Id=b.MaterialId
+                INNER JOIN WMS.MaterialCategory c ON a.MaterialCategoryId=c.Id
+                INNER JOIN WMS.materialPropertyRule d ON a.MaterialPropertyRuleId=d.Id; <!--获取收货单&物料信息 -->
+            </sql>
+            <sql id="receiptOrderItemId">
+                SELECT t2.id ReceiptOrderItemId,t2.ExpectedPkgQuantity ReceivedPkgQuantity,t2.CreatorId
+                FROM(SELECT TOP 1 * FROM WMS.ReceiptOrder  WHERE xStatus IN ('ACTIVE','RECEIVING') ORDER BY CreationTime DESC)t1
+                INNER JOIN WMS.ReceiptOrderItem t2 ON t1.Id = T2.ReceiptOrderId AND t2.ReceivedPkgQuantity =0  <!--获取收货需要的收货数量等信息 -->
+            </sql>
+            <sql id="delreceiptOrderItemId">
+                SELECT b.Id, b.CreationTime, b.CreatorId, b.LastModificationTime, b.LastModifierId, b.Creator,
+                b.LastModifier, b.SupplierId, b.ReceiptOrderId, b.MaterialId, b.MaterialPropertyId, b.Manufacturer,
+                b.ProductionDate, b.ExpirationDate, b.ShelvesStatus, b.PackageUnitId, b.ExpectedPkgQuantity,
+                b.ReceivedPkgQuantity, b.MovedPkgQuantity,b.Comments, b.MergeFeatureCode, b.OtherCode, b.ErpCode,
+                b.RowNo, b.QCStatus, b.OwnerUser, b.QualityGrade, b.Str1, b.Str2, b.Str3, b.Str4, b.Str5
+                FROM WMS.ReceiptOrder a INNER JOIN WMS.ReceiptOrderItem b ON a.Id=b.ReceiptOrderId
+                AND a.XStatus ='OPEN' ORDER BY a.LastModificationTime DESC  <!--获取删除收货明细项需要的信息 -->
+            </sql>
+            <sql id="Pallet">
+                SELECT c.Pallet FROM
+                (SELECT id, CreationTime FROM WMS.ReceiptOrder WHERE XStatus='RECEIVED'AND ShelvesStatus='UNPUTAWAY') a
+                INNER JOIN WMS.ReceiptOrderItem b ON a.Id=b.ReceiptOrderId
+                INNER JOIN WMS.ReceivedRecord c ON b.Id = c.ReceiptOrderItemId
+                INNER JOIN WMS.InventoryDetail d ON c.Pallet = d.Pallet
+                INNER JOIN  WMS.Location e ON d.LocationCode = e.Xcode AND e.Loctype='RECEIVE'
+                WHERE c.Pallet NOT IN
+                (SELECT Pallet FROM WMS.WmsTask WHERE Status NOT IN ('FINISHED','CANCEL'))
+                ORDER BY a.CreationTime  <!--初步获取已收货完成，不在上架、移位、盘点、下架等任务中，在received点的地面库存中的托盘 -->
+            </sql>
+        </table>
+        <table name="WMS.WmsTask">
+            <sql id="Pallet">
+                SELECT Pallet FROM WMS.WmsTask a  WHERE Status NOT IN ('FINISHED','CANCEL')
+                AND EXISTS(SELECT Pallet FROM WMS.InventoryDetail b WHERE a.Pallet =b.Pallet) <!--获取至少已收货完成、不是已完成或取消状态的上架、下架、盘点等任务的托盘 -->
+            </sql>
+        </table>
+        <table name="WMS.InventoryDetail">
+            <sql id="Pallet">
+                SELECT Top 1 a.Pallet FROM WMS.InventoryDetail a
+                INNER JOIN WMS.Location b ON a.LocationId=b.Id AND b.LocType = 'STORAGE'
+                WHERE a.AllocatedPackageQuantity =0 <!--获取一个在库存中、架上的托盘 -->
+            </sql>
+        </table>
+         <table name="WMS.Location">
+            <sql id="LocationId">
+                SELECT id FROM WMS.Location WHERE LocType IN ('RECEIVE','CROSS_DOCK') AND xStatus = 'ENABLED' <!--获取收货点信息 -->
+            </sql>
+        </table>
+        <table name="sequencetest">
+            <sql id="VALUE">
+                SELECT NEXT VALUE FOR sequencetest <!--自增序列，用于生成收货托盘号 -->
+            </sql>
+        </table>
+        <table name="WMS.WmsEnumerable">
+            <sql id="M_Str1">
+                SELECT Xname FROM  WMS.WmsEnumerable WHERE XType='M_STR1'; <!--获取扩展属性Str1的名称 -->
+            </sql>
+             <sql id="M_Str2">
+                SELECT Xname FROM  WMS.WmsEnumerable WHERE XType='M_STR2'; <!--获取扩展属性Str2的名称 -->
+            </sql>
+            <sql id="M_Str3">
+                SELECT Xname FROM  WMS.WmsEnumerable WHERE XType='M_STR3'; <!--获取扩展属性Str3的名称 -->
+            </sql>
+            <sql id="M_Str4">
+                SELECT Xname FROM  WMS.WmsEnumerable WHERE XType='M_STR4'; <!--获取扩展属性Str4的名称 -->
+            </sql>
+            <sql id="M_Str5">
+                SELECT Xname FROM  WMS.WmsEnumerable WHERE XType='M_STR5'; <!--获取扩展属性Str5的名称 -->
+            </sql>
+            <sql id="M_Str6">
+                SELECT Xname FROM  WMS.WmsEnumerable WHERE XType='M_STR6'; <!--获取扩展属性Str6的名称 -->
+            </sql>
+            <sql id="M_Str7">
+                SELECT Xname FROM  WMS.WmsEnumerable WHERE XType='M_STR7'; <!--获取扩展属性Str7的名称 -->
+            </sql>
+            <sql id="M_Str8">
+                SELECT Xname FROM  WMS.WmsEnumerable WHERE XType='M_STR8'; <!--获取扩展属性Str8的名称 -->
+            </sql>
+            <sql id="M_Str9">
+                SELECT Xname FROM  WMS.WmsEnumerable WHERE XType='M_STR9'; <!--获取扩展属性Str9的名称 -->
+            </sql>
+            <sql id="M_Str10">
+                SELECT Xname FROM  WMS.WmsEnumerable WHERE XType='M_STR10'; <!--获取扩展属性Str10的名称 -->
+            </sql>
+        </table>
+        <table name="WMS.ShipOrder">
+            <sql id="ShipOrderItem">
+                SELECT s.Id shipOrderId,s.CreationTime ship_CreationTime, s.CreatorId ship_CreatorId,
+                s.LastModificationTime ship_ModificationTime,s.LastModifierId ship_ModifierId,
+                s.XCode ship_XCode,s.ReceivedBy,s.BillTypeId,s.WhId,s.CustomerId,s.OwnerId,
+                s.DockId, t.materialId,t.material_CreationTime,t.material_CreatorId,
+                t.material_ModificationTime,t.material_ModifierId,t.material_XCode,t.material_XName,
+                t.Spec,t.SmallestUnit,t.ShipmentRuleId,t.AllocatRelationId,t.packageUnitId,
+                t.Unit_CreationTime,t.Unit_CreatorId,t.Unit_ModificationTime,t.PkgLevel,t.Unit,
+                t.ConvertFigureSmallUnit,t.ConvertFigure,t.materialCategoryId,t.Category_XCode,
+                t.Category_XName,t.Category_ModificationTime,t.Category_CreatorId,t.Category_CreationTime,
+                t.materialPropertyRuleId, t.PropertyRule_CreationTime,t.PropertyRule_CreatorId,
+                t.PropertyRule_ModificationTime,t.PropertyRule_ModifierId,t.PropertyRule_XCode,t.PropertyRule_XName,
+                t.ropertyRule_ProductionTime,t.PropertyRule_ReceivedTime,t.PropertyRule_InboundTime,
+                t.PropertyRule_SupplierId,t.PropertyRule_ExpiredTime, t.PropertyRule_AStartTime,
+                t.PropertyRule_QCStartTime,t.PropertyRule_PreservationDays,t.PropertyRule_SourceOrderCode,
+                t.PropertyRule_BatchNo,t.PropertyRule_M_Str1,t.PropertyRule_M_Str2,t.PropertyRule_M_Str3,
+                t.PropertyRule_M_Str4,t.PropertyRule_M_Str5,t.PropertyRule_M_Str6,t.PropertyRule_M_Str7,
+                t.PropertyRule_M_Str8,t.PropertyRule_M_Str9,t.PropertyRule_M_Str10,t.PropertyRule_M_Str11,
+                t.PropertyRule_M_Str12,t.PropertyRule_M_Str13,t.PropertyRule_M_Str14,t.PropertyRule_M_Str15,
+                t.PropertyRule_M_Str16,t.PropertyRule_M_Str17,t.PropertyRule_M_Str18,t.PropertyRule_M_Str19,
+                t.PropertyRule_M_Str20,t.PropertyRule_M_Str21,t.PropertyRule_M_Str22,t.PropertyRule_M_Str23,
+                t.PropertyRule_M_Str24,t.PropertyRule_M_Str25,t.PropertyRule_M_Str26,t.PropertyRule_M_Str27,
+                t.PropertyRule_M_Str28,t.PropertyRule_M_Str29,t.PropertyRule_M_Str30,t.PropertyRule_M_Str31,
+                t.PropertyRule_M_Str32,t.PropertyRule_M_Str33,t.PropertyRule_M_Str34,t.PropertyRule_M_Str35,
+                t.PropertyRule_M_Str36,t.PropertyRule_M_Str37,t.PropertyRule_M_Str38,t.PropertyRule_M_Str39,
+                t.PropertyRule_M_Str40,t.MaterialPropertyId,t.MaterialProperty_XType,t.ProductionTime,
+                t.ReceivedTime,t.InboundTime,t.ExpiredTime,t.AStartTime,t.QCStartTime,t.PreservationDays,
+                t.BatchNo,t.M_Str1,t.M_Str2,t.M_Str3,t.M_Str4,t.M_Str5,t.M_Str6,t.M_Str7,t.M_Str8,t.M_Str9,
+                t.M_Str10,MaterialProperty_SupplierId,MaterialProperty_SourceOrderCode
+                FROM (SELECT TOP 1 * FROM WMS.ShipOrder x WHERE XStatus ='OPEN'
+                AND NOT EXISTS(SELECT 1 FROM WMS.ShipOrderItem y WHERE x.Id=y.ShipOrderId)
+                ORDER BY CreationTime DESC) s
+                FULL OUTER JOIN
+                (SELECT TOP 5 m.Id materialId,m.CreationTime material_CreationTime,m.CreatorId material_CreatorId,
+                m.LastModificationTime material_ModificationTime,m.LastModifierId material_ModifierId,
+                m.XCode material_XCode,m.XName material_XName,m.Spec,m.SmallestUnit,m.ShipmentRuleId,
+                m.AllocatRelationId,b.Id packageUnitId,b.CreationTime Unit_CreationTime,b.CreatorId Unit_CreatorId,
+                b.LastModificationTime Unit_ModificationTime,b.PkgLevel,b.Unit,b.ConvertFigureSmallUnit,b.ConvertFigure,
+                c.Id materialCategoryId,c.XCode Category_XCode,c.XName Category_XName,c.LastModificationTime Category_ModificationTime,
+                c.CreatorId Category_CreatorId,c.CreationTime Category_CreationTime,
+                d.Id materialPropertyRuleId,d.CreationTime PropertyRule_CreationTime,d.CreatorId PropertyRule_CreatorId,
+                d.LastModificationTime PropertyRule_ModificationTime,d.LastModifierId PropertyRule_ModifierId,
+                d.XCode PropertyRule_XCode,d.XName PropertyRule_XName,d.ProductionTime ropertyRule_ProductionTime,
+                d.ReceivedTime PropertyRule_ReceivedTime,d.InboundTime PropertyRule_InboundTime,d.SupplierId PropertyRule_SupplierId,
+                d.ExpiredTime PropertyRule_ExpiredTime,d.AStartTime PropertyRule_AStartTime,d.QCStartTime PropertyRule_QCStartTime,
+                d.PreservationDays PropertyRule_PreservationDays,d.SourceOrderCode PropertyRule_SourceOrderCode,
+                d.BatchNo PropertyRule_BatchNo,d.M_Str1 PropertyRule_M_Str1,d.M_Str2 PropertyRule_M_Str2,d.M_Str3 PropertyRule_M_Str3,
+                d.M_Str4 PropertyRule_M_Str4,d.M_Str5 PropertyRule_M_Str5,d.M_Str6 PropertyRule_M_Str6,d.M_Str7 PropertyRule_M_Str7,
+                d.M_Str8 PropertyRule_M_Str8,d.M_Str9 PropertyRule_M_Str9,d.M_Str10 PropertyRule_M_Str10,d.M_Str11 PropertyRule_M_Str11,
+                d.M_Str12 PropertyRule_M_Str12,d.M_Str13 PropertyRule_M_Str13,d.M_Str14 PropertyRule_M_Str14,d.M_Str15 PropertyRule_M_Str15,
+                d.M_Str16 PropertyRule_M_Str16,d.M_Str17 PropertyRule_M_Str17,d.M_Str18 PropertyRule_M_Str18,d.M_Str19 PropertyRule_M_Str19,
+                d.M_Str20 PropertyRule_M_Str20,d.M_Str21 PropertyRule_M_Str21,d.M_Str22 PropertyRule_M_Str22,d.M_Str23 PropertyRule_M_Str23,
+                d.M_Str24 PropertyRule_M_Str24,d.M_Str25 PropertyRule_M_Str25,d.M_Str26 PropertyRule_M_Str26,d.M_Str27 PropertyRule_M_Str27,
+                d.M_Str28 PropertyRule_M_Str28,d.M_Str29 PropertyRule_M_Str29,d.M_Str30 PropertyRule_M_Str30,d.M_Str31 PropertyRule_M_Str31,
+                d.M_Str32 PropertyRule_M_Str32,d.M_Str33 PropertyRule_M_Str33,d.M_Str34 PropertyRule_M_Str34,d.M_Str35 PropertyRule_M_Str35,
+                d.M_Str36 PropertyRule_M_Str36,d.M_Str37 PropertyRule_M_Str37,d.M_Str38 PropertyRule_M_Str38,d.M_Str39 PropertyRule_M_Str39,
+                d.M_Str40 PropertyRule_M_Str40,k.Id MaterialPropertyId, k.XType MaterialProperty_XType,k.ProductionTime,
+                k.ReceivedTime,k.InboundTime,k.ExpiredTime,k.AStartTime,k.QCStartTime,k.PreservationDays,k.BatchNo,
+                k.M_Str1,k.M_Str2,k.M_Str3,k.M_Str4,k.M_Str5,k.M_Str6,k.M_Str7,k.M_Str8,k.M_Str9,k.M_Str10,
+                k.SupplierId MaterialProperty_SupplierId,k.SourceOrderCode MaterialProperty_SourceOrderCode
+                FROM WMS.Material m
+                --INNER JOIN WMS.InventoryDetail n ON m.Id=n.MaterialId AND n.AllocatedPackageQuantity =0
+                --INNER JOIN WMS.Location j ON n.LocationId=j.Id AND j.LocType = 'STORAGE'
+                INNER JOIN WMS.MaterialProperty k ON m.Id = k.MaterialId AND k.Xtype='RECEIVE'
+                INNER JOIN WMS.PackageUnit b ON m.Id=b.MaterialId
+                INNER JOIN WMS.MaterialCategory c ON m.MaterialCategoryId=c.Id
+                INNER JOIN WMS.materialPropertyRule d ON m.MaterialPropertyRuleId=d.Id
+                WHERE m.IsForbidden='N' AND m.XCode!='0000'
+                ORDER BY newid())t ON 1=1;   <!--获取发货单&物料信息 -->
+            </sql>
+            <sql id="ShipOrderId">
+                SELECT id FROM WMS.ShipOrder a WHERE XStatus ='OPEN' AND EXISTS(SELECT ShipOrderId
+                FROM WMS.ShipOrderItem b WHERE a.Id=b.ShipOrderId) ORDER BY a.CreationTime DESC; <!--生效发货单时，获取符合的发货单id（已新建发货单明细且状态为打开的） -->
+            </sql>
+            <sql id="Active_ShipOrderId">
+                SELECT id FROM WMS.ShipOrder a WHERE XStatus ='Working'
+                AND EXISTS(SELECT 1 FROM WMS.ShipOrderItem b WHERE a.Id=b.ShipOrderId)
+                AND EXISTS(SELECT 1 FROM WMS.MoveDoc c WHERE c.Type='MV_PICKTICKET_PICKING'
+                AND c.Status='OPEN' AND a.XCode=c.SourceOrderCode) ORDER BY a.CreationTime DESC; <!--一件下发发货单时，获取符合的发货单id（已新建发货单明细且状态为生效、未下发的） -->
+            </sql>
+        </table>
+    </database>
+</page>

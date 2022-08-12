@@ -1,0 +1,17 @@
+inbound/test_1_CreatReceiptOrder
+inbound/test_2_ReceiptOrderItem
+inbound/test_3_delreceiptOrderItem
+inbound/test_4_updatereceiptOrder
+#inbound/test_5_deleteReceiptOrder
+inbound/test_6_queryReceiptOrder
+#inbound/test_3_inboundActive
+#inbound/test_4_receive
+#inbound/test_5_to_profileCheckStatio
+#inbound/test_6_cfm_profileCheckStation
+#inbound/test_7_completeTask
+#outbound/test_8_CreatshipOrder
+#outbound/test_9_shipOrderItem
+#outbound/test_10_outboundActive
+#outbound/test_11_autoAllocateAndActive
+#outbound/test_12_completeTaskAndAutopicking
+#outbound/test_13_handlePickTask

@@ -1,0 +1,230 @@
+- AdditionalInfo: null
+  Comments: null
+  CreatedAt: 2022-01-14 01:45:22.291000
+  Direction: 0
+  FromLocationCode: 00-001-1012
+  ID: !!python/object/new:bson.int64.Int64
+  - 2015
+  IsSuspend: false
+  IsWcsTask: true
+  Pallets: TP535
+  Priority: 0
+  SentToWcsAt: 2022-01-14 01:45:22.898000
+  TaskCode: '20220114094522292'
+  TaskType: 入口到外形检测
+  ToLocationCode: 00-001-1012仅取放货
+  UnitLoads: []
+  UpdatedAt: 2022-01-14 01:45:22.291000
+  Version: 0
+  WasSentToWcs: true
+  WcsRequestId: '0'
+  _id: !!python/object/new:bson.objectid.ObjectId
+    state: !!binary |
+      YeDVsq4j2bu+vV67
+- AdditionalInfo: null
+  Comments: null
+  CreatedAt: 2022-01-14 01:45:31.171000
+  Direction: 0
+  FromLocationCode: 00-001-1013
+  ID: !!python/object/new:bson.int64.Int64
+  - 2016
+  IsSuspend: false
+  IsWcsTask: true
+  Pallets: TP536
+  Priority: 0
+  SentToWcsAt: 2022-01-14 01:45:31.175000
+  TaskCode: '20220114094531172'
+  TaskType: 入口到外形检测
+  ToLocationCode: 00-002-1013仅取放货
+  UnitLoads: []
+  UpdatedAt: 2022-01-14 01:45:31.171000
+  Version: 0
+  WasSentToWcs: true
+  WcsRequestId: '0'
+  _id: !!python/object/new:bson.objectid.ObjectId
+    state: !!binary |
+      YeDVu64j2bu+vV68
+- AdditionalInfo: null
+  Comments: null
+  CreatedAt: 2022-01-14 01:45:39.348000
+  Direction: 0
+  FromLocationCode: 00-001-1014
+  ID: !!python/object/new:bson.int64.Int64
+  - 2017
+  IsSuspend: false
+  IsWcsTask: true
+  Pallets: TP537
+  Priority: 0
+  SentToWcsAt: 2022-01-14 01:45:39.352000
+  TaskCode: '20220114094539348'
+  TaskType: 入口到外形检测
+  ToLocationCode: 00-001-1014仅取放货
+  UnitLoads: []
+  UpdatedAt: 2022-01-14 01:45:39.348000
+  Version: 0
+  WasSentToWcs: true
+  WcsRequestId: '0'
+  _id: !!python/object/new:bson.objectid.ObjectId
+    state: !!binary |
+      YeDVw64j2bu+vV69
+- AdditionalInfo: null
+  Comments: null
+  CreatedAt: 2022-01-14 01:45:47.532000
+  Direction: 0
+  FromLocationCode: 00-001-1015
+  ID: !!python/object/new:bson.int64.Int64
+  - 2018
+  IsSuspend: false
+  IsWcsTask: true
+  Pallets: TP538
+  Priority: 0
+  SentToWcsAt: 2022-01-14 01:45:47.535000
+  TaskCode: '20220114094547532'
+  TaskType: 入口到外形检测
+  ToLocationCode: 00-001-1015仅取放货
+  UnitLoads: []
+  UpdatedAt: 2022-01-14 01:45:47.532000
+  Version: 0
+  WasSentToWcs: true
+  WcsRequestId: '0'
+  _id: !!python/object/new:bson.objectid.ObjectId
+    state: !!binary |
+      YeDVy64j2bu+vV6+
+- AdditionalInfo: null
+  Comments: null
+  CreatedAt: 2022-01-14 01:45:55.710000
+  Direction: 0
+  FromLocationCode: 00-001-1016
+  ID: !!python/object/new:bson.int64.Int64
+  - 2019
+  IsSuspend: false
+  IsWcsTask: true
+  Pallets: TP539
+  Priority: 0
+  SentToWcsAt: 2022-01-14 01:45:55.715000
+  TaskCode: '20220114094555711'
+  TaskType: 入口到外形检测
+  ToLocationCode: 00-002-1016仅取放货
+  UnitLoads: []
+  UpdatedAt: 2022-01-14 01:45:55.710000
+  Version: 0
+  WasSentToWcs: true
+  WcsRequestId: '0'
+  _id: !!python/object/new:bson.objectid.ObjectId
+    state: !!binary |
+      YeDV064j2bu+vV6/
+- AdditionalInfo: null
+  Comments: null
+  CreatedAt: 2022-01-14 01:46:03.928000
+  Direction: 0
+  FromLocationCode: 00-001-1017
+  ID: !!python/object/new:bson.int64.Int64
+  - 2020
+  IsSuspend: false
+  IsWcsTask: true
+  Pallets: TP540
+  Priority: 0
+  SentToWcsAt: 2022-01-14 01:46:03.932000
+  TaskCode: '20220114094603928'
+  TaskType: 入口到外形检测
+  ToLocationCode: 00-002-1017仅取放货
+  UnitLoads: []
+  UpdatedAt: 2022-01-14 01:46:03.928000
+  Version: 0
+  WasSentToWcs: true
+  WcsRequestId: '0'
+  _id: !!python/object/new:bson.objectid.ObjectId
+    state: !!binary |
+      YeDV264j2bu+vV7A
+- AdditionalInfo: null
+  Comments: null
+  CreatedAt: 2022-01-14 01:46:12.138000
+  Direction: 0
+  FromLocationCode: 00-001-1012
+  ID: !!python/object/new:bson.int64.Int64
+  - 2021
+  IsSuspend: false
+  IsWcsTask: true
+  Pallets: TP541
+  Priority: 0
+  SentToWcsAt: 2022-01-14 01:46:12.141000
+  TaskCode: '20220114094612138'
+  TaskType: 入口到外形检测
+  ToLocationCode: 00-001-1012仅取放货
+  UnitLoads: []
+  UpdatedAt: 2022-01-14 01:46:12.138000
+  Version: 0
+  WasSentToWcs: true
+  WcsRequestId: '0'
+  _id: !!python/object/new:bson.objectid.ObjectId
+    state: !!binary |
+      YeDV5K4j2bu+vV7B
+- AdditionalInfo: null
+  Comments: null
+  CreatedAt: 2022-01-14 01:46:20.360000
+  Direction: 0
+  FromLocationCode: 00-001-1013
+  ID: !!python/object/new:bson.int64.Int64
+  - 2022
+  IsSuspend: false
+  IsWcsTask: true
+  Pallets: TP542
+  Priority: 0
+  SentToWcsAt: 2022-01-14 01:46:20.364000
+  TaskCode: '20220114094620360'
+  TaskType: 入口到外形检测
+  ToLocationCode: 00-002-1013仅取放货
+  UnitLoads: []
+  UpdatedAt: 2022-01-14 01:46:20.360000
+  Version: 0
+  WasSentToWcs: true
+  WcsRequestId: '0'
+  _id: !!python/object/new:bson.objectid.ObjectId
+    state: !!binary |
+      YeDV7K4j2bu+vV7C
+- AdditionalInfo: null
+  Comments: null
+  CreatedAt: 2022-01-14 01:46:28.536000
+  Direction: 0
+  FromLocationCode: 00-001-1014
+  ID: !!python/object/new:bson.int64.Int64
+  - 2023
+  IsSuspend: false
+  IsWcsTask: true
+  Pallets: TP543
+  Priority: 0
+  SentToWcsAt: 2022-01-14 01:46:28.539000
+  TaskCode: '20220114094628536'
+  TaskType: 入口到外形检测
+  ToLocationCode: 00-001-1014仅取放货
+  UnitLoads: []
+  UpdatedAt: 2022-01-14 01:46:28.536000
+  Version: 0
+  WasSentToWcs: true
+  WcsRequestId: '0'
+  _id: !!python/object/new:bson.objectid.ObjectId
+    state: !!binary |
+      YeDV9K4j2bu+vV7D
+- AdditionalInfo: null
+  Comments: null
+  CreatedAt: 2022-01-14 01:46:37.028000
+  Direction: 0
+  FromLocationCode: 00-001-1016
+  ID: !!python/object/new:bson.int64.Int64
+  - 2024
+  IsSuspend: false
+  IsWcsTask: true
+  Pallets: k0201
+  Priority: 0
+  SentToWcsAt: 2022-01-14 01:46:37.030000
+  TaskCode: '20220114094637028'
+  TaskType: 入口到外形检测
+  ToLocationCode: 00-002-1016仅取放货
+  UnitLoads: []
+  UpdatedAt: 2022-01-14 01:46:37.028000
+  Version: 0
+  WasSentToWcs: true
+  WcsRequestId: '0'
+  _id: !!python/object/new:bson.objectid.ObjectId
+    state: !!binary |
+      YeDV/a4j2bu+vV7E

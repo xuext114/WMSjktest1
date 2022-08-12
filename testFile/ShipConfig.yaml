@@ -1,0 +1,21 @@
+---
+request:
+ 入口到外形检测:
+ - ship: 00-001-1012
+   profileCheckStation: 00-001-1012仅取放货
+   profileCheckStationReturn: 00-001-1012
+ - ship: 00-001-1013
+   profileCheckStation: 00-002-1013仅取放货
+   profileCheckStationReturn: 00-001-1013
+ - ship: 00-001-1014
+   profileCheckStation: 00-001-1014仅取放货
+   profileCheckStationReturn: 00-001-1014
+ - ship: 00-001-1015
+   profileCheckStation: 00-001-1015仅取放货
+   profileCheckStationReturn: 00-001-1015
+ - ship: 00-001-1016
+   profileCheckStation: 00-002-1016仅取放货
+   profileCheckStationReturn: 00-001-1016
+ - ship: 00-001-1017
+   profileCheckStation: 00-002-1017仅取放货
+   profileCheckStationReturn: 00-001-1017
